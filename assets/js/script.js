@@ -1,14 +1,15 @@
 
 let playerPosition = 0
 let bulletPosition = 900
-
+let yZombie = 0
+let yBullet = 0
 const sprite = {
 	player : $("#character"),
 	// pos : 0
 }
 
 const bulletSprite ={
-	player: $("#bullet")
+	bull: $("#bullet")
 }
 
 
@@ -18,6 +19,7 @@ $("html").keydown(function(e){
 		sprite.player.animate({
 			"bottom" : "100px"
 		})
+		y = 100
 	}
 	gameOver()
 })	
@@ -27,6 +29,7 @@ $("html").keyup(function(e){
 		sprite.player.animate({
 			"bottom" : "0"
 		})
+		y=0
 	}
 	gameOver()
 })	
@@ -48,9 +51,25 @@ $("html").keydown(function(e){
 	}
 	gameOver()
 })	
+$("start").click(function(){
+	bullAnimate()
+})
+
+function bullAnimate(){
+		if(bulletPosition == 0){
+			return
+		}
+
+		bulletSprite.bull.animate({
+		"left" : (bulletPosition -= 50) + "px"
+		})
+
+		bullAnimate()
+	}
+
 
 function gameOver(){
-	if(playerPosition == bulletPosition){
+	if(playerPosition == bulletPosition && yZombie == yBullet){
 		alert("Game Over")
 	}
 }
