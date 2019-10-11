@@ -1,0 +1,46 @@
+/* 
+canvas{
+	width: 75%;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+ 	border: 1px solid #d3d3d3;
+    background-color: #f1f1f1;
+}*/
+
+section{
+	width: 75%;
+	height: 50%;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+ 	border: 1px solid #d3d3d3;
+    background-color: #f1f1f1;
+}
+
+#character{
+	/*width: 2px;
+	height: auto;*/
+	position: absolute;
+	bottom: 0;
+}
+/*.char{
+	width: 100px;
+	height: auto;
+}*/
+
+.field{
+	background-image: url(../images/background.png);
+	position: top;
+	background-size: cover;
+}
+
+.bullet{
+	position: absolute;
+	left: 900px;
+	bottom: 12px;
+	width: 65px;
+	box-shadow: 0 5px 10px 0.5;
+}
