@@ -1,16 +1,17 @@
 
 let playerPosition = 0
-let bulletPosition = 1000
+let bulletPosition = 100;
 let yZombie = 0
 let yBullet = 0
 let score = 0
 const sprite = {
 	player : $("#character"),
-	// pos : 0
+	playerPosX : 0
 }
 
 const bulletSprite ={
-	bull: $("#bullet")
+	bull: $("#bullet"),
+	bulletPosX: 0
 }
 
 
@@ -36,16 +37,18 @@ $("html").keyup(function(e){
 $("html").keydown(function(e){
 	if (e.which == 37 ) {
 		sprite.player.animate({
-			"left" : (playerPosition -= 50) + "px"
+			"left" : (playerPosition -= 10) + "vw"
 		})
+		sprite.playerPosX = playerPosition
 	}
 })
 
 $("html").keydown(function(e){
 	if (e.which == 39 ) {
 		sprite.player.animate({
-			"left" : (playerPosition += 50) + "px"
+			"left" : (playerPosition += 10) + "vw"
 		})
+		sprite.playerPosX = playerPosition
 	}
 })	
 
@@ -64,32 +67,38 @@ function scoring(){
 }
 
 function bullAnimate(){
-	// if(gameOver == true){
-	// 	return
-	// }
+/*	if(gameOver){
+		return
+	}*/
 
 	if(bulletPosition == 0){
-		uh()
-		bulletPosition = 1000
-		setTimeout(uh, 500)
+		bulletToggle()
+		bulletPosition = 100
+		setTimeout(bulletToggle, 500)
 		bullAnimate()
 		return
 	}
 
+	// if(bulletSprite.bulletPosX == sprite.playerPosX && yZombie == yBullet){
+	// 	gameOver()
+	// 	return
+	// }
+
 	bulletSprite.bull.animate({
-	"left" : (bulletPosition -= 100) + "px"
+	"left" : (bulletPosition -= 10) + "vw"
 	})
+	bulletSprite.bulletPosX = bulletPosition
 	gameOver()
 	setTimeout(bullAnimate, 450)
 }
 
-function uh(){
+function bulletToggle(){
 	$("#bullet").toggle()
 }
 
 
 function gameOver(){
-	if(playerPosition == bulletPosition && yZombie == yBullet){
+	if(bulletSprite.bulletPosX == sprite.playerPosX && yZombie == yBullet){
 		$("#start").toggle()
 		alert("game over!!")
 		return true
