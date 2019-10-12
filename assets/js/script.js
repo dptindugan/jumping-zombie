@@ -36,19 +36,23 @@ $("html").keyup(function(e){
 
 $("html").keydown(function(e){
 	if (e.which == 37 ) {
+		if(playerPosition != 0){
 		sprite.player.animate({
 			"left" : (playerPosition -= 10) + "vw"
 		})
 		sprite.playerPosX = playerPosition
+		}
 	}
 })
 
 $("html").keydown(function(e){
 	if (e.which == 39 ) {
+		if(playerPosition < 90){
 		sprite.player.animate({
 			"left" : (playerPosition += 10) + "vw"
 		})
 		sprite.playerPosX = playerPosition
+		}
 	}
 })	
 
@@ -60,29 +64,20 @@ $("#start").click(function(){
 })
 
 function scoring(){
-	score++
+	score += 10
 	$("#score").html(score)
-	setTimeout(scoring, 200)
+	setTimeout(scoring, 100)
 
 }
 
 function bullAnimate(){
-/*	if(gameOver){
-		return
-	}*/
+	
 
 	if(bulletPosition == 0){
 		bulletToggle()
 		bulletPosition = 100
 		setTimeout(bulletToggle, 500)
-		bullAnimate()
-		return
 	}
-
-	// if(bulletSprite.bulletPosX == sprite.playerPosX && yZombie == yBullet){
-	// 	gameOver()
-	// 	return
-	// }
 
 	bulletSprite.bull.animate({
 	"left" : (bulletPosition -= 10) + "vw"
@@ -101,6 +96,7 @@ function gameOver(){
 	if(bulletSprite.bulletPosX == sprite.playerPosX && yZombie == yBullet){
 		$("#start").toggle()
 		alert("game over!!")
-		return true
+		return true;
 	}
 }
+
