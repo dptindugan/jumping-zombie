@@ -64,6 +64,9 @@ $("#start").click(function(){
 })
 
 function scoring(){
+	if(bulletSprite.bulletPosX == sprite.playerPosX && yZombie == yBullet){
+		return
+	}
 	score += 10
 	$("#score").html(score)
 	setTimeout(scoring, 100)
@@ -72,13 +75,12 @@ function scoring(){
 
 function bullAnimate(){
 	
-
+  
 	if(bulletPosition == 0){
 		bulletToggle()
 		bulletPosition = 100
 		setTimeout(bulletToggle, 500)
 	}
-
 	bulletSprite.bull.animate({
 	"left" : (bulletPosition -= 10) + "vw"
 	})
